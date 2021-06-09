@@ -8,7 +8,7 @@ from pdf2image import convert_from_path
 
 def retrieveImage(year: str, month: str, day: str, path: str):
     # URL of front page
-    url = 'http://hemeroteca-paginas.mundodeportivo.com/EMD02/PUB/'+ year + '/' + month + '/' + day + '/EMD' + year + month + day + '001MDP.pdf'
+    url = 'http://hemeroteca-paginas.mundodeportivo.com/EMD03/PUB/'+ year + '/' + month + '/' + day + '/EMD' + year + month + day + '001MDP.pdf'
 
     # download front page to specified path
     urllib.request.urlretrieve(url, path + '.pdf')
