@@ -31,15 +31,24 @@ def tweetLaVanguardia():
     image_path = os.path.join(PORTADA_PATH,'lavanguardia' + year + month + day)
 
     # Download image
-    retrieveImage(year, month, day, image_path)
+    for attempt in range(100):
+        try:
+            retrieveImage(year, month, day, image_path)
+        except:
+            print('Error to download La Vanguardia, attempt {}'.format(attempt + 1))
+            time.sleep(10)
+        else:
+            break
 
     # Tweet text
     tweet_text = 'La Vanguardia ' + day + '/' + month + '/' + year
 
     # Tweet
-    for attempt in range(300):
+    for attempt in range(200):
         try:
             twitter.sendTweet(tweet_text, image_path + '.jpg')
+            # Print progress
+            print(year + '/' + month + '/'  + day + ' La Vanguardia: Completado')
         except:
             print('Error to tweet La Vanguardia, attempt {}'.format(attempt + 1))
             time.sleep(10)
@@ -47,8 +56,11 @@ def tweetLaVanguardia():
             break
 
     # Delete image and pdf
-    os.remove(image_path + '.pdf')
-    os.remove(image_path + '.jpg')
+    try:
+        os.remove(image_path + '.pdf')
+        os.remove(image_path + '.jpg')
+    except:
+        # Print progress
+        print(year + '/' + month + '/'  + day + ' La Vanguardia: Error :(')
     
-    # Print progress
-    print(year + '/' + month + '/'  + day + ' La Vanguardia: Completado')
+    
