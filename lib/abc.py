@@ -37,7 +37,7 @@ def tweetABC():
     tweet_text = 'ABC ' + day + '/' + month + '/' + year
 
     # Tweet
-    for attempt in range(300):
+    for attempt in range(50):
         try:
             twitter.sendTweet(tweet_text, image_path + '.jpg')
         except:
