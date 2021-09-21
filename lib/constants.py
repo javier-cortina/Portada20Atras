@@ -11,6 +11,6 @@ PORTADA_PATH = LOCAL_PATH / 'portadas'
 # Post dates
 postElPais = '08:00'
 postABC = '08:30'
-postLaVanguardia = '09:00'
-postMundoDeportivo = '09:30'
+postLaVanguardia = '09:55'
+postMundoDeportivo = '10:00'
 postElPaisSemanal = '10:00'
