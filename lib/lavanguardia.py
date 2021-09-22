@@ -44,7 +44,7 @@ def tweetLaVanguardia():
     tweet_text = 'La Vanguardia ' + day + '/' + month + '/' + year
 
     # Tweet
-    for attempt in range(200):
+    for attempt in range(1):
         try:
             twitter.sendTweet(tweet_text, image_path + '.jpg')
             # Print progress
