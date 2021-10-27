@@ -22,27 +22,29 @@ def tweetTimeMagazine():
     month = now.strftime("%m")
     day = now.strftime("%d")
 
-    # Path where image will be stored
-    image_path = os.path.join(PORTADA_PATH,'timeMagazine' + year + month + day)
+    # If it's monday, continue
+    if datetime.weekday(datetime.strptime(year+month+day, '%Y%m%d')) == 0:
+        # Path where image will be stored
+        image_path = os.path.join(PORTADA_PATH,'timeMagazine' + year + month + day)
 
-    # Download image
-    retrieveImage(year, month, day, image_path)
+        # Download image
+        retrieveImage(year, month, day, image_path)
 
-    # Tweet text
-    tweet_text = 'Time ' + day + '/' + month + '/' + year
+        # Tweet text
+        tweet_text = 'Time ' + day + '/' + month + '/' + year
 
-    # Tweet
-    for attempt in range(300):
-        try:
-            twitter.sendTweet(tweet_text, image_path + '.jpg')
-        except:
-            print('Error to tweet El Pais, attempt {}'.format(attempt + 1))
-            time.sleep(10)
-        else:
-            break
+        # Tweet
+        for attempt in range(300):
+            try:
+                twitter.sendTweet(tweet_text, image_path + '.jpg')
+            except:
+                print('Error to tweet Time, attempt {}'.format(attempt + 1))
+                time.sleep(10)
+            else:
+                break
 
-    # Delete image and pdf
-    os.remove(image_path + '.jpg')
-    
-    # Print progress
-    print(year + '/' + month + '/'  + day + ' Time: Completado')
+        # Delete image and pdf
+        os.remove(image_path + '.jpg')
+        
+        # Print progress
+        print(year + '/' + month + '/'  + day + ' Time: Completado')
